@@ -33,6 +33,7 @@ namespace UrlShortcutCreator.Presentations
         private void UrlShortcutCreator_Initialize()
         {
             // 各コントローラを初期化します。
+            this.cbGetTitle.Checked = false;
             this.txtFileName.Clear();
             this.txtUrl.Clear();
 
@@ -57,8 +58,8 @@ namespace UrlShortcutCreator.Presentations
             // サービスを取得します。
             var usss = UrlShortcutSingletonService.GetInstance();
 
-            // ファイル名が未入力、かつURLの書式が正しいかを判定します。
-            if (usss.UrlValidation(this.txtUrl.Text))
+            // タイトル取得チェックボックスがチェック済、かつファイル名が未入力、かつURLの書式が正しいかを判定します。
+            if (this.cbGetTitle.Checked && usss.UrlValidation(this.txtUrl.Text))
                 // WEBページのタイトルを設定します。
                 this.txtFileName.Text = usss.GetWebPageTitle(this.txtUrl.Text, true);
         }
